@@ -28,14 +28,14 @@ int popOperand(){
     return operandStack[operandTop--];
 }
 
-//Assign precedence to operators
+//Assigning precedence to operators
 int precedence(char op){
     if(op=='+'||op=='-')return 1;
     if(op=='*'||op=='/')return 2;
     return 0;
 }
 
-//Check if character is an operator
+//Checking if character is an operator
 int isOperator(char ch){
     return (ch=='+' || ch=='-' || ch=='*' || ch=='/');
 }
@@ -44,7 +44,7 @@ int isOperator(char ch){
 int infixToPostfix(char infix[], char postfix[]){
 
     int i=0,j=0;
-    //Firstly i expect an operand
+    //Firstly I expect an operand
     int expectingOperand=1;
 
     while(infix[i]!='\0'){
