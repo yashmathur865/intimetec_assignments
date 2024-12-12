@@ -9,8 +9,7 @@ struct User {
 };
 
 void createFileIfNotExists(){
-
-    FILE *file = fopen("users.txt", "a");
+    FILE *file=fopen("users.txt","a");
     if(file){
         fclose(file);
     }
@@ -19,7 +18,6 @@ void createFileIfNotExists(){
 void createUser(){
     struct User user;
     FILE *file=fopen("users.txt","a");
-
     if(!file){
         printf("Error: Unable to open file.\n");
         return;
@@ -27,31 +25,29 @@ void createUser(){
 
     printf("Enter User ID: ");
     scanf("%d", &user.id);
-    getchar();//Consume newline
+    getchar();
     printf("Enter name: ");
-    fgets(user.name, sizeof(user.name), stdin);
-    //Remove newline
+    fgets(user.name,sizeof(user.name), stdin);
     user.name[strcspn(user.name, "\n")]= '\0';
     printf("Enter age: ");
-    scanf("%d", &user.age);
+    scanf("%d",&user.age);
 
-    fprintf(file, "%d,%s,%d\n", user.id, user.name, user.age);
+    fprintf(file,"%d,%s,%d\n",user.id,user.name, user.age);
     fclose(file);
 
     printf("User added successfully.\n");
 }
 
 void readUsers(){
-   FILE *file = fopen("users.txt", "r");
-    if (!file){
+   FILE *file=fopen("users.txt","r");
+    if(!file){
         printf("Error: Unable to open file.\n");
         return;
     }
-
     char line[500];
     printf("\nUser Data:\n");
-    while (fgets(line, sizeof(line), file)){
-        printf("%s", line);
+    while(fgets(line, sizeof(line), file)){
+        printf("%s",line);
     }
 
     fclose(file);
@@ -80,19 +76,19 @@ void updateUser(){
 
     char line[500];
 
-    while (fgets(line, sizeof(line), file)) {
+    while(fgets(line, sizeof(line), file)){
         sscanf(line, "%d,%49[^,],%d", &user.id, user.name, &user.age);
-        if (user.id == id) {
+        if (user.id==id){
             found = 1;
             printf("Enter new name: ");
-            fgets(user.name, sizeof(user.name), stdin);
-            user.name[strcspn(user.name, "\n")] = '\0';
+            fgets(user.name, sizeof(user.name),stdin);
+            user.name[strcspn(user.name, "\n")] ='\0';
 
             printf("Enter new age: ");
             scanf("%d", &user.age);
         }
 
-        fprintf(tempFile, "%d,%s,%d\n", user.id, user.name, user.age);
+        fprintf(tempFile,"%d,%s,%d\n",user.id,user.name, user.age);
     }
 
     fclose(file);
@@ -100,8 +96,8 @@ void updateUser(){
 
     if(found){
         remove("users.txt");
-        rename("temp.txt", "users.txt");
-        printf("User(s) updated successfully.\n");
+        rename("temp.txt","users.txt");
+        printf("User updated successfully.\n");
     }
     else{
         remove("temp.txt");
@@ -111,7 +107,7 @@ void updateUser(){
 
 
 void deleteUser(){
-    int id, found = 0;
+    int id, found=0;
     struct User user;
 
     printf("Enter the ID of the user to delete: ");
@@ -122,18 +118,18 @@ void deleteUser(){
         return;
     }
 
-    FILE *tempFile = fopen("temp.txt", "w");
-    if(!tempFile) {
+    FILE *tempFile=fopen("temp.txt", "w");
+    if(!tempFile){
         printf("Cannot Open File\n");
         fclose(file);
         return;
     }
 
     char line[500];
-    while(fgets(line, sizeof(line), file)){
-        sscanf(line, "%d,%49[^,],%d", &user.id, user.name, &user.age);
+    while(fgets(line, sizeof(line),file)){
+        sscanf(line,"%d,%49[^,],%d",&user.id,user.name, &user.age);
         if (user.id != id){
-            fprintf(tempFile, "%d,%s,%d\n", user.id, user.name, user.age);
+            fprintf(tempFile, "%d,%s,%d\n",user.id,user.name,user.age);
         }
         else {
             found = 1;
@@ -142,7 +138,6 @@ void deleteUser(){
 
     fclose(file);
     fclose(tempFile);
-
     if(found){
         remove("users.txt");
         rename("temp.txt", "users.txt");
@@ -155,11 +150,9 @@ void deleteUser(){
 }
 
 int main(){
-
     int choice;
 
     createFileIfNotExists();
-
     while (1) {
         printf("\nWhat Operation You Want To Perform\n");
         printf("1. Create User\n");
@@ -169,7 +162,6 @@ int main(){
         printf("5. Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
-        //To take the newline character which is not taken by scanf
         getchar();
 
         switch (choice) {
@@ -192,6 +184,5 @@ int main(){
                 printf("Please Choose Between 1 To 5\n");
         }
     }
-
     return 0;
 }
