@@ -2,6 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+int isalpha(int c){
+    return ((c>='a' && c<='z') || (c>='A' && c<='Z'));
+}
+
 struct User {
     int id;
     char name[50];
@@ -17,26 +21,65 @@ void createFileIfNotExists(){
 
 void createUser(){
     struct User user;
-    FILE *file=fopen("users.txt","a");
-    if(!file){
-        printf("Error: Unable to open file.\n");
+
+    FILE *readFile=fopen("users.txt", "r");
+    if(!readFile){
+        printf("Unable to open file for reading.\n");
         return;
     }
 
     printf("Enter User ID: ");
-    scanf("%d", &user.id);
+    if(scanf("%d", &user.id)!= 1){
+        printf("User ID must be an integer.\n");
+        while(getchar()!='\n');
+        fclose(readFile);
+        return;
+    }
     getchar();
-    printf("Enter name: ");
-    fgets(user.name,sizeof(user.name), stdin);
-    user.name[strcspn(user.name, "\n")]= '\0';
-    printf("Enter age: ");
-    scanf("%d",&user.age);
 
-    fprintf(file,"%d,%s,%d\n",user.id,user.name, user.age);
-    fclose(file);
+    struct User alreadyPresentUser;
+    char line[500];
+    while (fgets(line,sizeof(line), readFile)){
+        sscanf(line,"%d,%49[^,],%d",&alreadyPresentUser.id,alreadyPresentUser.name,&alreadyPresentUser.age);
+        if(alreadyPresentUser.id==user.id){
+            printf("User ID %d already exists.\n",user.id);
+            fclose(readFile);
+            return;
+        }
+    }
+    fclose(readFile);
+
+    printf("Enter name:");
+    fgets(user.name,sizeof(user.name),stdin);
+    user.name[strcspn(user.name,"\n")]= '\0';
+
+    for(int i = 0; i< strlen(user.name); ++i){
+        if(!isalpha(user.name[i]) && user.name[i]!= ' '){
+            printf("Name must contain alphabetic characters only.\n");
+            return;
+        }
+    }
+
+    printf("Enter age: ");
+    if(scanf("%d",&user.age)!= 1 || user.age<= 0){
+        printf("Invalid input. Age must be a positive integer.\n");
+        while (getchar() != '\n');
+        return;
+    }
+
+
+    FILE *writeFile = fopen("users.txt", "a");
+    if (!writeFile) {
+        printf("Error: Unable to open file for writing.\n");
+        return;
+    }
+
+    fprintf(writeFile,"%d,%s,%d\n",user.id, user.name, user.age);
+    fclose(writeFile);
 
     printf("User added successfully.\n");
 }
+
 
 void readUsers(){
    FILE *file=fopen("users.txt","r");
@@ -161,7 +204,11 @@ int main(){
         printf("4. Delete User\n");
         printf("5. Exit\n");
         printf("Enter your choice: ");
-        scanf("%d", &choice);
+        if (scanf("%d", &choice)!= 1) {
+            printf("Please enter a number between 1 and 5.\n");
+            while(getchar() != '\n');
+            continue;
+        }
         getchar();
 
         switch (choice) {
