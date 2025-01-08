@@ -15,7 +15,8 @@ int main(){
     printf("Enter the number of columns: ");
     scanf("%d",&cols);
 
-    if(rows<1 || rows>10 || cols<1 || cols>10){
+    if(rows<1 || rows>10 || cols<1 || cols>101){
+        printf("Number of rows should be  between 1 to 10 and Number of columns should be between 1 to 101\n");
         return 1;
     }
 
