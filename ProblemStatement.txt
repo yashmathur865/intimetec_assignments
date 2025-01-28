@@ -1,0 +1,36 @@
+Problem Statement : Sort and Search for the K-th Largest Element in a Linked List
+
+Problem Statement:
+You are given a singly linked list of integers. Your task is to:
+
+Sort the Linked List.
+After sorting, find and return the k-th largest element in the sorted linked list.
+
+
+Constraints:
+The list has n nodes.
+The list can contain negative numbers as well.
+Do not convert the linked list into an array to solve this problem. Perform sorting and searching directly on the linked list.
+
+
+                    Time Complexity Analysis
+
+Insertion at the End: O(n^2)
+Bubble Sort: O(n^2)
+Finding the k-th Largest Element: O(n)
+Overall Time Complexity: O(n^2)
+
+                    Space Complexity Analysis
+
+
+Dynamic Memory Allocation:
+Each node in the linked list is dynamically allocated.
+For n nodes, the space required is O(n)
+
+Additional Space:
+The code does not use any additional data structures like arrays, stacks, or recursion.
+Space for a few variables (i, j, front, back, etc.) is constant, i.e O(1)
+
+Overall Space Complexity:
+Total space complexity is O(n) (due to the linked list storage).
+
