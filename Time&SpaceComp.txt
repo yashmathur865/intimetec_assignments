@@ -1,0 +1,10 @@
+                                                    Time Complexity
+
+Enqueue: O(1)
+Dequeue: O(n) in the worst case (due to transferring elements between stacks)
+Peek: O(n) in the worst case (due to transferring elements between stacks)
+Size: O(1)
+
+                                                    Space Complexity
+
+The space complexity is O(n) because, in the worst case, all elements of the queue are stored in either stack1 or stack2. Therefore, the total space used is proportional to the number of elements in the queue.
