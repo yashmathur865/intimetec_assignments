@@ -1,0 +1,8 @@
+                                                        Time Complexity Analysis
+
+All stack operations have a time Complexity of O(1).
+
+                                                        Space Complexity Analysis
+
+A structure has an integer array of size 1000 -> O(1000) i.e O(1) (constant space) and an integer top -> O(1).
+So Overall Space Complexity -> O(1).
