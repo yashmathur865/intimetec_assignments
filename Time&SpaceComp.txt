@@ -1,0 +1,20 @@
+                                                        Time Complexity
+
+Push (push)	O(N)
+Enqueue element into q1 → O(1)
+Move all elements from q1 to q2 → O(N)
+Swap q1 and q2 → O(1)
+Overall Complexity: O(N)
+
+
+Pop (pop)	O(1)
+Peek (peekStack)	O(1)
+isStackEmpty	O(1)
+stackSize	O(1)
+
+                                                        Space Complexity
+
+The space required for both queues:
+Each queue has a max size of MAX_SIZE → O(N)
+
+Overall Space Complexity: O(N)
