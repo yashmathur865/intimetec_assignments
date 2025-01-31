@@ -1,0 +1,11 @@
+                                                                Time Complexity Analysis
+
+Enqueue (enqueue)	O(1)
+Dequeue (dequeue)	O(1)
+Peek (peek)	O(1)
+isEmpty	O(1)
+size	O(1)
+
+                                                                Space Complexity Analysis
+
+Since the memory usage grows with the number of elements in the queue, the overall space complexity is O(N).
