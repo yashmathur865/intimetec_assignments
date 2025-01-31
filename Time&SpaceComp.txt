@@ -1,0 +1,14 @@
+                                                        Time Complexity Analysis
+
+Enqueue (enqueue)->O(1)
+Dequeue (dequeue)->O(1)
+Peek (peek)->O(1)
+isEmpty->O(1)
+isFull->O(1)
+size->O(1)
+
+Overall Time Complexity -> O(1)
+
+                                                        Space Complexity Analysis
+
+Space Used By Array -> O(MAX_SIZE) i.e constant so O(1).
