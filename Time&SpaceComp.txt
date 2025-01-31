@@ -1,0 +1,11 @@
+                                                        Time Complexity Analysis
+
+Push (push)	O(N)
+Pop (pop)	O(1)
+Peek (peekStack)	O(1)
+isStackEmpty	O(1)
+stackSize	O(1)
+
+                                                        Space Complexity Analysis
+
+The stack only contains one queue, so the overall space complexity remains O(N).
