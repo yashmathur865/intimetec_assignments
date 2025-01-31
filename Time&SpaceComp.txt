@@ -1,0 +1,12 @@
+                                                        Time Complexity
+
+initStack, initQueue -> O(1)
+isEmpty, isFull, size, isQueueEmpty, queueSize -> O(1)
+push, enqueue -> O(1)
+pop -> O(1)
+dequeue -> O(N) (as it transfers elements to a temporary stack and back)
+peek, peekQueue -> O(N) (similar to dequeue, requires element transfers)
+
+                                                        Space Complexity
+
+O(N) (since an extra stack is used during dequeue operations)
