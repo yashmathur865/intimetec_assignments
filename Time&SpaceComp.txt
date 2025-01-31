@@ -1,0 +1,8 @@
+                                                    Time Complexity Analysis
+
+All Stack Operations have O(1) time complexity.
+
+                                                    Space Complexity Analysis
+
+The space used by the stack grows linearly with the number of elements stored.
+For n elements we need O(n) space.
